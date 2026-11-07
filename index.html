@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《人的行为》逐字精读 · 读书站</title>
+<meta name="description" content="米塞斯《人的行为》（Human Action）逐字精读读书站：全书结构、读法与逐篇笔记索引。">
+<style>
+  :root{
+    --paper:#FDF8F1;
+    --card:#FFFFFF;
+    --ink:#2A3A67;
+    --body:#2F3033;
+    --muted:#6B6862;
+    --gold:#A98446;
+    --line:#E6DCCB;
+    --soft:#F3ECDD;
+    --serif:"Songti SC","STSong","Noto Serif CJK SC","Source Han Serif SC","SimSun",Georgia,serif;
+    --sans:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--body);
+    font-family:var(--serif);
+    font-size:17px;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px}
+  a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  a:hover{border-bottom-color:var(--gold)}
+
+  /* 顶栏 */
+  .topbar{
+    border-bottom:1px solid var(--line);
+    font-family:var(--sans);
+    font-size:13px;
+    letter-spacing:.04em;
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;min-height:56px;gap:16px;flex-wrap:wrap}
+  .brand{color:var(--ink);font-weight:600;border:0}
+  .nav{display:flex;gap:22px}
+  .nav a{color:var(--muted);border:0}
+  .nav a:hover{color:var(--ink)}
+
+  /* 首屏 */
+  .hero{padding:78px 0 62px;text-align:center;border-bottom:1px solid var(--line)}
+  .eyebrow{
+    font-family:var(--sans);font-size:12px;letter-spacing:.28em;
+    color:var(--gold);text-transform:uppercase;margin:0 0 26px;
+  }
+  .hero h1{
+    margin:0;
+    font-size:clamp(42px,8vw,68px);
+    line-height:1.25;
+    font-weight:600;
+    letter-spacing:.06em;
+    color:var(--ink);
+  }
+  .hero .en{
+    font-family:Georgia,"Times New Roman",serif;
+    font-style:italic;
+    font-size:17px;
+    color:var(--muted);
+    margin:16px 0 0;
+    letter-spacing:.02em;
+  }
+  .hero .meta{
+    font-family:var(--sans);font-size:13px;color:var(--muted);
+    margin:14px 0 0;letter-spacing:.08em;
+  }
+  .hero .lead{
+    max-width:560px;margin:34px auto 0;
+    font-size:19px;line-height:2;color:var(--body);
+  }
+  .btnrow{margin-top:34px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+  .btn{
+    font-family:var(--sans);font-size:14px;
+    padding:11px 26px;border-radius:2px;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    transition:background .18s,color .18s;
+  }
+  .btn:hover{background:var(--ink);color:var(--paper);border-bottom-color:var(--ink)}
+  .btn.ghost{border-color:var(--line);color:var(--muted)}
+  .btn.ghost:hover{background:var(--soft);color:var(--ink);border-color:var(--ink)}
+
+  /* 区块 */
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:28px}
+  .sec-no{font-family:Georgia,serif;font-size:13px;color:var(--gold);letter-spacing:.1em}
+  h2{margin:0;font-size:26px;font-weight:600;color:var(--ink);letter-spacing:.05em}
+  p{margin:0 0 18px}
+  .muted{color:var(--muted)}
+  .note{
+    font-family:var(--sans);font-size:13px;color:var(--muted);
+    background:var(--soft);border-left:3px solid var(--gold);
+    padding:14px 18px;line-height:1.8;margin-top:24px;
+  }
+
+  /* 读法卡片 */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .card{
+    background:var(--card);border:1px solid var(--line);
+    padding:26px 22px;border-radius:2px;
+  }
+  .card .n{font-family:Georgia,serif;font-size:13px;color:var(--gold);letter-spacing:.14em}
+  .card h3{margin:12px 0 10px;font-size:19px;color:var(--ink);font-weight:600}
+  .card p{font-size:15px;line-height:1.85;margin:0;color:var(--muted)}
+
+  /* 目录 */
+  .toc-tools{margin:-8px 0 20px;text-align:right}
+  .linkbtn{
+    font-family:var(--sans);font-size:13px;color:var(--muted);
+    background:none;border:0;cursor:pointer;padding:4px 0 4px 14px;
+  }
+  .linkbtn:hover{color:var(--ink)}
+  details{
+    background:var(--card);border:1px solid var(--line);
+    margin-bottom:10px;border-radius:2px;
+  }
+  summary{
+    cursor:pointer;list-style:none;padding:18px 22px;
+    display:flex;align-items:baseline;gap:16px;
+    font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";margin-left:auto;color:var(--gold);font-size:18px;font-weight:400}
+  details[open] summary::after{content:"−"}
+  summary:hover{background:#FCFAF5}
+  .pno{font-family:Georgia,serif;font-size:13px;color:var(--gold);min-width:34px;letter-spacing:.06em}
+  .chap{
+    font-family:var(--sans);font-size:13px;color:var(--muted);
+    font-weight:400;margin-left:auto;margin-right:18px;letter-spacing:.04em;
+  }
+  .detail-body{padding:2px 22px 22px 72px;border-top:1px solid var(--soft)}
+  .detail-body p{font-size:15.5px;line-height:1.9;margin:16px 0 0}
+  .detail-body .keys{
+    font-family:var(--sans);font-size:12.5px;color:var(--gold);
+    letter-spacing:.04em;margin-top:14px;
+  }
+
+  /* 起步区 */
+  .start h2{margin-bottom:18px}
+  .start p{max-width:620px}
+  ul.plain{margin:0;padding-left:20px}
+  ul.plain li{margin-bottom:10px}
+
+  /* 页脚 */
+  footer{padding:42px 0 56px;font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:2}
+  footer .rule{width:36px;height:1px;background:var(--gold);margin-bottom:22px}
+  footer strong{color:var(--ink);font-weight:600}
+
+  @media (max-width:720px){
+    .wrap{padding:0 20px}
+    .hero{padding:54px 0 44px}
+    .hero .lead{font-size:17px}
+    section{padding:44px 0}
+    .cards{grid-template-columns:1fr}
+    .chap{display:none}
+    .detail-body{padding-left:22px}
+    .nav{gap:14px;font-size:12px}
+  }
+  @media print{
+    .topbar,.btnrow,.toc-tools{display:none}
+    details{border:0}
+    details:not([open]) .detail-body{display:block}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">人的行为 · 逐字精读</a>
+    <nav class="nav" aria-label="站内导航">
+      <a href="#about">关于本书</a>
+      <a href="#how">怎么读</a>
+      <a href="#toc">全书结构</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">米塞斯思想研讨班 · 逐字精读</p>
+    <h1>人的行为</h1>
+    <p class="en">Human Action: A Treatise on Economics</p>
+    <p class="meta">路德维希·冯·米塞斯 &nbsp;·&nbsp; 1949 年首版 &nbsp;·&nbsp; 七篇三十九章</p>
+    <p class="lead">不跳论证，不替原书下结论。<br>对着原书一句一句拆开，把每一处推理的来路和去向弄明白。</p>
+    <div class="btnrow">
+      <a class="btn" href="#toc">从全书结构开始</a>
+      <a class="btn ghost" href="#how">先看读法</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">01</span><h2>关于这本书</h2></div>
+    <p>《人的行为》（<em>Human Action: A Treatise on Economics</em>）是奥地利经济学家路德维希·冯·米塞斯（Ludwig von Mises, 1881–1973）的代表作，1949 年首次出版，后经 1963、1966、1996 年数次修订。</p>
+    <p>全书的起点不是「资源如何配置」，而是「人为什么行动」。米塞斯把经济学放在一门更基础学科——研究人的行动之逻辑的<strong>人类行为学</strong>（praxeology）——之上，从个体的目的性行为出发，一层层推出交换、价格、货币、经济计算与市场过程。方法上他坚持先验推理与方法论的个体主义，反对把物理学式的实证方法直接搬进经济学。</p>
+    <p>全书七篇、三十九章，从行为的概念分析，一路推到市场社会的交换学、社会主义下的经济计算问题，再到干预主义与经济学在知识体系中的位置。篇幅大、论证环环相扣，跳读很容易只记住结论、丢掉推理链条。</p>
+    <div class="note">本站是个人精读笔记与讲稿索引，不是原书译文或全文转载。涉及原书的表述以纸本原文为准；目录为便于检索的提纲式整理，不代表任一中译本的逐字章名。</div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">02</span><h2>怎么读</h2></div>
+    <div class="cards">
+      <div class="card">
+        <div class="n">I</div>
+        <h3>逐字精读</h3>
+        <p>对照原书逐句推进，一个论证都不跳过。遇到定义、前提转换和长句，停下来拆清楚再往下走。</p>
+      </div>
+      <div class="card">
+        <div class="n">II</div>
+        <h3>白板推演</h3>
+        <p>概念之间的关系边讲边画，画面保持静态定格，方便随时暂停回看，把抽象论证落到看得见的结构上。</p>
+      </div>
+      <div class="card">
+        <div class="n">III</div>
+        <h3>逐篇归档</h3>
+        <p>按原书七篇的结构归位，每篇的笔记、讲稿与推演图放在一起，回查时能直接定位到论证的出处。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="toc">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">03</span><h2>全书结构</h2></div>
+    <p class="muted" style="font-size:15.5px;margin-bottom:22px">点击任一篇展开，看这一篇处理什么问题。括号内为该篇在原书中的章次范围。</p>
+    <div class="toc-tools">
+      <button class="linkbtn" id="expandAll" type="button">展开全部</button>
+      <button class="linkbtn" id="collapseAll" type="button">收起全部</button>
+    </div>
+
+    <details>
+      <summary><span class="pno">I</span><span>人的行为</span><span class="chap">第 1–7 章</span></summary>
+      <div class="detail-body">
+        <p>从「行动人」这个起点开始：什么是有目的的行为，行为范畴有哪些基本要素，以及时间、不确定性如何进入每一次选择。同时处理人的行为科学在认识论上的位置，并回应「经济学与对理性的反叛」这一条批评线索。</p>
+        <p class="keys">行为人 · 认识论问题 · 时间 · 不确定性 · 概念分析</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="pno">II</span><span>社会框架中的行为</span><span class="chap">第 8–10 章</span></summary>
+      <div class="detail-body">
+        <p>把视角从单个行为人扩到人与人之间：人类社会如何形成，观念与思想在其中起什么作用，以及社会里的交换为什么不同于孤立的个体行为。这一篇为后面的交换学铺好地基。</p>
+        <p class="keys">人类社会 · 观念的作用 · 社会中的交换</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="pno">III</span><span>经济计算</span><span class="chap">第 11–13 章</span></summary>
+      <div class="detail-body">
+        <p>全书的关键枢纽之一：没有货币价格时，价值排序还能做什么、不能做什么；经济计算的适用边界在哪里；货币计算为什么是行为人不可或缺的工具。后面关于社会主义经济计算的论证，前提都在这里埋下。</p>
+        <p class="keys">价值排序 · 计算的范围 · 货币计算</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="pno">IV</span><span>交换学或市场社会的经济学</span><span class="chap">第 14–24 章</span></summary>
+      <div class="detail-body">
+        <p>篇幅最大的一篇，也是全书主体。界定交换学的方法与范围，然后依次处理市场、价格形成、间接交换与货币、时间中的行为、利率、信用扩张与景气循环、工资、非人力生产要素、市场的外生给定条件，最后落到利益和谐与冲突的问题上。</p>
+        <p class="keys">市场 · 价格 · 货币 · 利率 · 景气循环 · 工资 · 利益和谐</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="pno">V</span><span>没有市场的社会合作</span><span class="chap">第 25–26 章</span></summary>
+      <div class="detail-body">
+        <p>两章，但分量极重：先重构社会主义社会的设想，再论证在没有生产资料市场、因而没有相应价格的情况下，经济计算为什么无法进行。这是第三篇「经济计算」的直接应用。</p>
+        <p class="keys">社会主义构想 · 经济计算的不可能性</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="pno">VI</span><span>受干扰的市场经济</span><span class="chap">第 27–36 章</span></summary>
+      <div class="detail-body">
+        <p>逐项检视干预主义的具体形态：政府与市场、征税、对生产的限制、价格管制、通货与信用操纵、没收与再分配、工团主义、战争经济、福利原则与市场原则之争，最后归结到干预主义自身的危机——各项干预彼此冲突，且难以停在原定目标上。</p>
+        <p class="keys">干预主义 · 价格管制 · 信用扩张 · 干预主义的危机</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="pno">VII</span><span>经济学在知识体系中的位置</span><span class="chap">第 37–39 章</span></summary>
+      <div class="detail-body">
+        <p>收束全书：经济学作为一门先验科学有什么特殊性质，它在学术与教育体系中为什么处境尴尬，以及经济学与人生基本问题之间的关系。不是结论的附录，而是对整套方法的一次回望。</p>
+        <p class="keys">经济学的性质 · 学术地位 · 基本问题</p>
+      </div>
+    </details>
+
+    <div class="note">逐篇笔记与讲稿正在整理中。目录与结构说明已可用，内容页会按篇补上。</div>
+  </div>
+</section>
+
+<section class="start" id="start">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">04</span><h2>从这里开始</h2></div>
+    <p>如果第一次读这本，建议按下面的顺序走，不要从第四篇直接切入：</p>
+    <ul class="plain">
+      <li>先读<strong>第一篇</strong>，把「行动」这个起点和几个基本范畴弄清楚；</li>
+      <li>再读<strong>第三篇</strong>，弄懂货币计算为什么是后面所有论证的前提；</li>
+      <li>然后进入<strong>第四篇</strong>主体，这一段最慢，值得逐句过；</li>
+      <li>第五、六篇是前两处前提的应用与检验，回头对照着读会顺很多。</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="rule"></div>
+    <p><strong>《人的行为》逐字精读</strong> &nbsp;·&nbsp; 个人读书笔记与讲稿索引</p>
+    <p>本站不转载原书全文；引用与表述以纸本原文为准。内容逐篇整理中。</p>
+    <p>© 2026 &nbsp;·&nbsp; <a href="#top">回到顶部</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('#toc details'));
+    document.getElementById('expandAll').addEventListener('click', function(){
+      boxes.forEach(function(d){ d.open = true; });
+    });
+    document.getElementById('collapseAll').addEventListener('click', function(){
+      boxes.forEach(function(d){ d.open = false; });
+    });
+  })();
+</script>
+
+</body>
+</html>
